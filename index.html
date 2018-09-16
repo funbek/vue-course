@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <script src="https://unpkg.com/v-tooltip"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Vue</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="app">
+            <h2>This is title</h2>
+
+            <table>
+                <caption>
+                    Total users: <b>{{ users.length }}</b>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Patronymic</th>
+                        <th>Avatar</th>
+                    </tr>
+                </thead>
+                <tbody v-show="showUsers">
+                    <tr v-for="(user, index) in users" v-bind:key="user.name">
+                        <td>
+                            {{ index }} - {{ user.name }}
+                        </td>
+                        <td>
+                            {{ user.surname }}
+                        </td>
+                        <td>
+                            {{ user.patronymic }}
+                        </td>
+                        <td>
+                            <img v-if="user.avatar" :src="user.avatar" class="user-avatar" alt="avatar-alt" title="i'm not default">
+                            <img v-else src="img/default_person.jpg" class="user-avatar" alt="no-defaul-avatar" title="i'm default">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="button-wrapper">
+                <div class="button-default" v-on:click="showHideUsers" v-tooltip="tooltip">
+                    Is a magic button
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        window.app = new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    showUsers: true,
+                    tooltip: 'Show-Hide button',
+                    users: [
+                        {
+                            name: 'One',
+                            surname: 'OneSure',
+                            patronymic: 'OnePatr',
+                            avatar: 'img/not-default-person.jpg'
+                        },
+                        {
+                            name: 'Two',
+                            surname: 'TwoSure',
+                            patronymic: 'TwoPatr',
+                            avatar: 'img/not-default-person.jpg'
+                        },
+                        {
+                            name: 'Three',
+                            surname: 'ThreeSure',
+                            patronymic: 'ThreePatr',
+                            avatar: 'img/not-default-person.jpg'
+                        },
+                        {
+                            name: 'Four',
+                            surname: 'FourSure',
+                            patronymic: 'FourPatr',
+                            avatar: 'img/not-default-person.jpg'
+                        },
+                        {
+                            name: 'Five',
+                            surname: 'FiveSure',
+                            patronymic: 'FivePatr'
+                        }
+                    ]
+                }
+            },
+            methods: {
+                showHideUsers: function(event) {
+                    this.showUsers = !this.showUsers;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
