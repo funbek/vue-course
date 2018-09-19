@@ -1,11 +1,49 @@
+var usersTable = {
+    template: '#users-list',
+    props: {
+        users: {
+            type: Array,
+            required: true
+        },
+        title: {
+            type: String,
+            default: 'Title inside'
+        }
+    }
+}
+
 window.app = new Vue({
+    components: {
+        'usersTable': usersTable
+    },
     el: '#app',
     data: function () {
         return {
             title: '123',
             showUsers: true,
             tooltip: 'Show-Hide button',
-            users: [{
+            users: []
+        }
+    },
+    computed: { // вычисляемое свойство
+        usersCount: function() {
+            return this.users.length;
+        }
+    },
+    mounted: function() {
+        this.loadUsers();
+        console.log('Data is load');
+    },
+    watch: { // отслеживание изменений
+
+    },
+    methods: { // обработка данных
+        showHideUsers: function (event) {
+            this.showUsers = !this.showUsers;
+        },
+        loadUsers: function() {
+            this.users = [
+                {
                     name: 'One',
                     surname: 'OneSure',
                     patronymic: 'OnePatr',
@@ -35,19 +73,6 @@ window.app = new Vue({
                     patronymic: 'FivePatr'
                 }
             ]
-        }
-    },
-    computed: { // вычисляемое свойство
-        usersCount: function() {
-            return this.users.length;
-        }
-    },
-    watch: { // отслеживание изменений
-
-    },
-    methods: { // обработка данных
-        showHideUsers: function (event) {
-            this.showUsers = !this.showUsers;
         }
     }
 })

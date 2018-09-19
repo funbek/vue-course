@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <script src="https://unpkg.com/v-tooltip"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="app">
+            <h2>This is title</h2>
+            
+            <div v-show="showUsers">
+                <users-table :users="users"></users-table>
+            </div>
+
+            <div class="button-wrapper">
+                <div class="button-default" v-on:click="showHideUsers" v-tooltip="tooltip">
+                    Is a magic button
+                </div>
+            </div>
+
+            <div>
+                <input type="text" v-model="title">
+                <input type="number" v-model.number="title">
+            </div>
+        </div>
+    </div>
+
+    <div id="users-list" class="hidden">
+        <table>
+            <caption>
+                Total users: <b>{{ users.length }}</b>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Patronymic</th>
+                    <th>Avatar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(user, index) in users" v-bind:key="user.name">
+                    <td>
+                        {{ index }} - {{ user.name }}
+                    </td>
+                    <td>
+                        {{ user.surname }}
+                    </td>
+                    <td>
+                        {{ user.patronymic }}
+                    </td>
+                    <td>
+                        <img v-if="user.avatar" :src="user.avatar" class="user-avatar" alt="avatar-alt" title="i'm not default">
+                        <img v-else src="img/default_person.jpg" class="user-avatar" alt="no-defaul-avatar" title="i'm default">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
