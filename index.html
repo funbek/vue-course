@@ -41,6 +41,7 @@
                             <img v-if="user.avatar" :src="user.avatar" class="user-avatar" alt="avatar-alt" title="i'm not default">
                             <img v-else src="img/default_person.jpg" class="user-avatar" alt="no-defaul-avatar" title="i'm default">
                         </td>
+                        
                     </tr>
                 </tbody>
             </table>
@@ -49,6 +50,11 @@
                 <div class="button-default" v-on:click="showHideUsers" v-tooltip="tooltip">
                     Is a magic button
                 </div>
+            </div>
+
+            <div>
+                <input type="text" v-model="title">
+                <input type="number" v-model.number="title">
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ window.app = new Vue({
     el: '#app',
     data: function () {
         return {
+            title: '123',
             showUsers: true,
             tooltip: 'Show-Hide button',
             users: [{
@@ -36,7 +37,15 @@ window.app = new Vue({
             ]
         }
     },
-    methods: {
+    computed: { // вычисляемое свойство
+        usersCount: function() {
+            return this.users.length;
+        }
+    },
+    watch: { // отслеживание изменений
+
+    },
+    methods: { // обработка данных
         showHideUsers: function (event) {
             this.showUsers = !this.showUsers;
         }
