@@ -1,20 +1,22 @@
+
 var usersTable = {
     template: '#users-list',
     props: {
         users: {
             type: Array,
             required: true
-        },
-        title: {
-            type: String,
-            default: 'Title inside'
+        }
+    },
+    methods: {
+        inputHandler() {
+            console.log('wow')
         }
     }
 }
 
 window.app = new Vue({
     components: {
-        'usersTable': usersTable
+        'usersTable': usersTable,
     },
     el: '#app',
     data: function () {
