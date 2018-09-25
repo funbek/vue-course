@@ -1,16 +1,28 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <div 
+        id="navbarsExampleDefault" 
+        class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <router-link tag="li" exact class="nav-item" to="/">
+          <router-link 
+            tag="li" 
+            exact 
+            class="nav-item" 
+            to="/">
             <a class="nav-link">Главная</a>
           </router-link>
-          <router-link tag="li" class="nav-item" to="/users">
+          <router-link 
+            tag="li" 
+            class="nav-item" 
+            to="/users">
             <a class="nav-link">Список пользователей</a>
           </router-link>
-          <router-link tag="li" class="nav-item" to="/add-users">
-            <a class="nav-link">Создать пользователя</a>
+          <router-link 
+            tag="li" 
+            class="nav-item" 
+            to="/edit-user">
+            <a class="nav-link">Редактирование пользователя</a>
           </router-link>
         </ul>
       </div>

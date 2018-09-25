@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Users from "@/views/Users.vue";
-import AddUser from "@/views/AddUser.vue";
+import EditUser from "@/views/EditUser.vue";
 
 Vue.use(Router);
 
@@ -22,9 +22,9 @@ export default new Router({
       component: Users
     },
     {
-      path: "/add-users",
-      name: "users",
-      component: AddUser
+      path: "/edit-user",
+      name: "edit-user",
+      component: EditUser
     }
   ]
 });

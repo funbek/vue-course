@@ -1,7 +1,7 @@
 <template>
-    <div>
-        Add user
-    </div>
+  <div>
+    Add user
+  </div>
 </template>
 
 <script>
