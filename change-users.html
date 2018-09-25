@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vue.js"></script>
-    <script src="https://unpkg.com/v-tooltip"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Vue</title>
@@ -18,18 +17,18 @@
             <h2>This is title</h2>
 
             <div v-show="showUsers">
-                <users-table :users="users"></users-table>
+                <users-change :users="users" ></users-change>
             </div>
 
             <div class="button-wrapper">
-                <div class="button-default" v-on:click="showHideUsers" v-tooltip="tooltip">
+                <div class="button-default" v-on:click="showHideUsers">
                     Is a magic button
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="users-list" class="hidden">
+    <div id="change-users" class="hidden">
         <table>
             <caption>
                 Total users: <b>{{ users.length }}</b>
@@ -43,11 +42,12 @@
             <tbody>
                 <tr v-for="(user, index) in users" v-bind:key="user.name">
                     <td>
-                        {{ user.name }}
-                        <input type="text" :value="user.name" >
+                        {{user.name}}
+                        <input type="text" v-model="user.name">
                     </td>
                     <td>
-                        {{ user.surname }}
+                        {{user.surname}}
+                        <input type="text" v-model="user.surname" >
                     </td>
                 </tr>
             </tbody>

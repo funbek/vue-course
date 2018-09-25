@@ -6,30 +6,18 @@ var usersChange = {
             required: true
         }
     },
-    mounted: function() {
+    mounted: function () {
+        this.userRefresh()
     },
     methods: {
-    }
-}
-
-var usersTable = {
-    template: '#users-list',
-    props: {
-        users: {
-            type: Array,
-            required: true
-        }
-    },
-    methods: {
-        inputHandler() {
-            console.log('wow')
+        userRefresh: function () {
+            console.log('users is refresh')
         }
     }
 }
 
 window.app = new Vue({
     components: {
-        'usersTable': usersTable,
         'usersChange': usersChange
     },
     el: '#app',
@@ -41,11 +29,11 @@ window.app = new Vue({
         }
     },
     computed: { // вычисляемое свойство
-        usersCount: function() {
+        usersCount: function () {
             return this.users.length;
         }
     },
-    mounted: function() {
+    mounted: function () {
         this.loadUsers();
     },
     watch: { // отслеживание изменений
@@ -55,9 +43,8 @@ window.app = new Vue({
         showHideUsers: function (event) {
             this.showUsers = !this.showUsers;
         },
-        loadUsers: function() {
-            this.users = [
-                {
+        loadUsers: function () {
+            this.users = [{
                     name: 'One',
                     surname: 'OneSure',
                     patronymic: 'OnePatr',
