@@ -28,14 +28,14 @@ export default {
   },
   methods: {
     randomUsers(max) {
-      return Math.round(Math.random() * max)
+      return Math.round(Math.random() * max);
     },
     loadData() {
       axios
         .get("http://localhost:3004/users")
         .then(response => {
           this.usersLength = response.data.length;
-          
+
           return response.data;
         })
         .then(users => {
