@@ -73,9 +73,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .table {
-    &__phone {
-      white-space: nowrap;
-    }
+.table {
+  &__phone {
+    white-space: nowrap;
   }
+}
 </style>
