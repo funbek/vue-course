@@ -6,6 +6,7 @@
       v-if="user"
       :user="user" />
     <div v-else>Пользователей нет :(</div>
+    
   </div>
 </template>
 
@@ -19,24 +20,29 @@ export default {
     UserForm
   },
   data: () => ({
-    user: null
+    user: null,
+    usersLength: 0
   }),
   mounted() {
     this.loadData();
   },
   methods: {
+    randomUsers(max) {
+      return Math.round(Math.random() * max)
+    },
     loadData() {
       axios
         .get("http://localhost:3004/users")
-        .then(response => response.data)
+        .then(response => {
+          this.usersLength = response.data.length;
+          
+          return response.data;
+        })
         .then(users => {
-          this.user = users[0];
+          this.user = users[this.randomUsers(this.usersLength)];
         })
         .catch(error => console.log(`woops this is error: ${error}`));
     }
   }
 };
 </script>
-
-<style lang="scss">
-</style>
