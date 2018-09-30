@@ -33,7 +33,11 @@
         <tr 
           v-for="user in users" 
           :key="user.id">
-          <td>#{{ user.id }}</td>
+          <td>
+            <router-link :to="/edit-user/ + user.id">
+              # {{ user.id }}
+            </router-link>
+          </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.isActive }}</td>

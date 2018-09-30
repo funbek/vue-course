@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h2>Редактирование пользователя</h2>
+    <h2>Редактирование пользователя {{ id }}</h2>
 
     <user-form 
       v-if="user"
-      :user="user" />
+      :user="user"
+      @input="value => user = value" />
     <div v-else>Пользователей нет :(</div>
     
   </div>
@@ -21,25 +22,26 @@ export default {
   },
   data: () => ({
     user: null,
-    usersLength: 0
+    url: "http://localhost:3004/users"
   }),
+  computed: {
+    id() {
+      return this.$route.params.id;
+    },
+    userUrl() {
+      return `${this.url}/${this.id}`;
+    }
+  },
   mounted() {
     this.loadData();
   },
   methods: {
-    randomUsers(max) {
-      return Math.round(Math.random() * max);
-    },
     loadData() {
       axios
-        .get("http://localhost:3004/users")
-        .then(response => {
-          this.usersLength = response.data.length;
-
-          return response.data;
-        })
+        .get(this.userUrl)
+        .then(response => response.data)
         .then(users => {
-          this.user = users[this.randomUsers(this.usersLength)];
+          this.user = users;
         })
         .catch(error => console.log(`woops this is error: ${error}`));
     }

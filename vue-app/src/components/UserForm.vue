@@ -20,7 +20,7 @@
       <label>Баланс</label>
       <input 
         v-model="user.balance" 
-        type="number" 
+        type="text" 
         class="form-control" >
     </div>
 
@@ -28,8 +28,12 @@
       <label>Телефон</label>
       <input 
         v-model="user.phone" 
-        type="tel" 
+        type="text" 
         class="form-control" >
+    </div>
+
+    <div>
+      <pre>{{ user }}</pre>
     </div>
 
   </div>

@@ -3,12 +3,13 @@ import Router from "vue-router";
 import Home from "@/views/Home.vue";
 import Users from "@/views/Users.vue";
 import EditUser from "@/views/EditUser.vue";
+import AddUser from "@/views/AddUser.vue";
 
 Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: process.env.BASE_URL || "/",
   linkActiveClass: "active",
   routes: [
     {
@@ -18,12 +19,14 @@ export default new Router({
     },
     {
       path: "/users",
-      name: "users",
       component: Users
     },
     {
-      path: "/edit-user",
-      name: "edit-user",
+      path: "/add-user",
+      component: AddUser
+    },
+    {
+      path: "/edit-user/:id",
       component: EditUser
     }
   ]

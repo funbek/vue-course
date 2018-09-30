@@ -21,8 +21,8 @@
           <router-link 
             tag="li" 
             class="nav-item" 
-            to="/edit-user">
-            <a class="nav-link">Редактирование пользователя</a>
+            to="/add-user">
+            <a class="nav-link">Добавить пользователя</a>
           </router-link>
         </ul>
       </div>
