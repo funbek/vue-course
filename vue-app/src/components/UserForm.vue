@@ -3,7 +3,7 @@
     <div class="form-group">
       <label>Имя</label>
       <input
-        v-model="user.firstName"
+        v-model="localUser.firstName"
         type="text"
         class="form-control" >
     </div>
@@ -11,7 +11,7 @@
     <div class="form-group">
       <label>Фамилия</label>
       <input
-        v-model="user.lastName"
+        v-model="localUser.lastName"
         type="text"
         class="form-control" >
     </div>
@@ -19,7 +19,7 @@
     <div class="form-group">
       <label>Email</label>
       <input
-        v-model="user.email"
+        v-model="localUser.email"
         type="text"
         class="form-control" >
     </div>
@@ -27,7 +27,7 @@
     <div class="form-group">
       <label>Url картинки</label>
       <input
-        v-model="user.picture"
+        v-model="localUser.picture"
         type="text"
         class="form-control" >
     </div>
@@ -35,7 +35,7 @@
     <div class="form-group">
       <label>Возраст</label>
       <input
-        v-model="user.age"
+        v-model="localUser.age"
         type="text"
         class="form-control" >
     </div>
@@ -43,7 +43,7 @@
     <div class="form-group">
       <label>Активный</label>
       <input
-        v-model="user.isActive"
+        v-model="localUser.isActive"
         type="checkbox"
         class="checkbox-inline" >
     </div>
@@ -51,7 +51,7 @@
     <div class="form-group">
       <label>Баланс</label>
       <input
-        v-model="user.balance"
+        v-model="localUser.balance"
         type="text"
         class="form-control" >
     </div>
@@ -59,7 +59,7 @@
     <div class="form-group">
       <label>Телефон</label>
       <input
-        v-model="user.phone"
+        v-model="localUser.phone"
         type="text"
         class="form-control" >
     </div>
@@ -67,7 +67,7 @@
     <div class="form-group">
       <label>Уровень доступа</label>
       <select
-        v-model="user.accessLevel"
+        v-model="localUser.accessLevel"
         class="form-control"
       >
         <option
@@ -83,7 +83,7 @@
     <div class="form-group">
       <label>Адрес</label>
       <input
-        v-model="user.address"
+        v-model="localUser.address"
         type="text"
         class="form-control" >
     </div>
@@ -91,7 +91,7 @@
     <div class="form-group">
       <label>Компания</label>
       <input
-        v-model="user.company"
+        v-model="localUser.company"
         type="text"
         class="form-control" >
     </div>
@@ -99,7 +99,7 @@
     <div class="form-group">
       <label>О пользователе</label>
       <input
-        v-model="user.about"
+        v-model="localUser.about"
         type="text"
         class="form-control" >
     </div>
@@ -107,7 +107,7 @@
     <div class="form-group">
       <label>Дата регистрации</label>
       <input
-        v-model="user.registered"
+        v-model="localUser.registered"
         type="text"
         class="form-control" >
     </div>
@@ -115,7 +115,7 @@
     <slot name="buttons" />
 
     <div>
-      <pre>{{ user }}</pre>
+      <pre>{{ localUser }}</pre>
     </div>
 
   </div>
@@ -124,9 +124,6 @@
 <script>
 export default {
   name: "UserForm",
-  model: {
-    prop: "user"
-  },
   props: {
     user: {
       type: Object,
@@ -134,7 +131,19 @@ export default {
     }
   },
   data: () => ({
+    localUser: null,
     accessList: ["user", "admin", "guest"]
-  })
+  }),
+  watch: {
+    localUser: {
+      deep: true,
+      handler() {
+        this.$emit("input", this.localUser);
+      }
+    }
+  },
+  created() {
+    this.localUser = Object.assign({}, this.user);
+  }
 };
 </script>

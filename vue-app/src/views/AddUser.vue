@@ -3,7 +3,8 @@
     <h2>Добавление пользователя</h2>
 
     <user-form
-      v-model="user"
+      :user="user"
+      @input="value => user = value"
     >
       <div slot="buttons">
         <button
@@ -83,7 +84,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .popup {
   position: fixed;
   z-index: 2;

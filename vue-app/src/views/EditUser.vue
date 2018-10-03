@@ -5,8 +5,41 @@
     <user-form 
       v-if="user"
       :user="user"
-      @input="value => user = value" />
+      @input="value => user = value"
+    >
+      <div
+        slot="buttons">
+        <button
+          class="btn btn-danger"
+          @click="showRemovePopup"
+        >
+          Удалить пользователя
+        </button>
+      </div>
+    </user-form>
     <div v-else>Пользователей нет :(</div>
+
+    <template v-if="popupShow">
+      <div class="popup-shadow" />
+      <div
+        class="popup"
+      >
+        <h2>Точно, точно удалить?</h2>
+
+        <button
+          class="btn btn-danger"
+          @click="removeUser"
+        >
+          Ага
+        </button>
+        <button
+          class="btn btn-primary"
+          @click="closePopup"
+        >
+          Неа
+        </button>
+      </div>
+    </template>
     
   </div>
 </template>
@@ -22,7 +55,8 @@ export default {
   },
   data: () => ({
     user: null,
-    url: "http://localhost:3004/users"
+    url: "http://localhost:3004/users",
+    popupShow: false
   }),
   computed: {
     id() {
@@ -44,6 +78,18 @@ export default {
           this.user = users;
         })
         .catch(error => console.log(`woops this is error: ${error}`));
+    },
+    showRemovePopup() {
+      this.popupShow = true;
+    },
+    removeUser() {
+      axios.delete(this.userUrl).then(() => {
+        this.$router.push({ path: "/users" });
+      });
+    },
+    closePopup() {
+      this.popupShow = false;
+      return;
     }
   }
 };

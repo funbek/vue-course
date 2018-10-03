@@ -1,8 +1,11 @@
 <template>
   <div>
     <h1>Список пользователей</h1>
-    <div v-if="!users">
-      Список пользователей пуст
+    <div 
+      v-if="!users"
+      class="alert alert-warning"
+    >
+      Загрузка ....
     </div>
     <user-list 
       v-else 
